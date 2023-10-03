@@ -15,59 +15,32 @@ export function UploadForm() {
       data.set('file', file);
       data.set(
         'marca',
-        (e.currentTarget.elements[0] as HTMLInputElement).value
+        (e.currentTarget.elements.namedItem('marca') as HTMLInputElement).value
       );
       data.set(
         'modelo',
-        (e.currentTarget.elements[1] as HTMLInputElement).value
+        (e.currentTarget.elements.namedItem('modelo') as HTMLInputElement).value
       );
       data.set(
         'seats',
-        (e.currentTarget.elements[2] as HTMLInputElement).value
+        (e.currentTarget.elements.namedItem('seats') as HTMLInputElement).value
+      );
+      data.set(
+        'matricula',
+        (e.currentTarget.elements.namedItem('matricula') as HTMLInputElement)
+          .value
       );
       data.set(
         'engine',
-        (e.currentTarget.elements[3] as HTMLInputElement).value
-      );
-
-      const formData = {
-        marca: data.get('marca') as String,
-        modelo: data.get('modelo'),
-        seats: data.get('seats'),
-        engine: data.get('engine'),
-        file: `/uploads/${file.name}`,
-      };
-      console.log(formData);
-
-      const res = await fetch('http://localhost:5000/api/upload', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-      });
-      // handle the error
-      if (!res.ok) throw new Error(await res.text());
-    } catch (e: any) {
-      // Handle errors here
-      console.error(e);
-    }
-
-    try {
-      const data = new FormData();
-      data.set('file', file);
-      data.set(
-        'marca',
-        (e.currentTarget.elements[0] as HTMLInputElement).value
+        (e.currentTarget.elements.namedItem('engine') as HTMLInputElement).value
       );
       data.set(
-        'modelo',
-        (e.currentTarget.elements[1] as HTMLInputElement).value
-      );
-      data.set(
-        'seats',
-        (e.currentTarget.elements[2] as HTMLInputElement).value
-      );
-      data.set(
-        'engine',
-        (e.currentTarget.elements[3] as HTMLInputElement).value
+        'currentAutonomy',
+        (
+          e.currentTarget.elements.namedItem(
+            'currentAutonomy'
+          ) as HTMLInputElement
+        ).value
       );
 
       const res = await fetch('/api/upload', {
@@ -96,6 +69,8 @@ export function UploadForm() {
       />
       <label htmlFor="seats">Número de lugares</label>
       <input type="number" name="seats" id="seats" placeholder="5" required />
+      <label htmlFor="matricula">Matrícula</label>
+      <input type="text" name="matricula" id="matricula" required />
       <div className="linha">
         <label>Tipo de motor</label>
         <div className="power">
@@ -118,6 +93,13 @@ export function UploadForm() {
           </div>
         </div>
       </div>
+      <label htmlFor="currentAutonomy">Autonomia Corrente</label>
+      <input
+        type="number"
+        name="currentAutonomy"
+        id="currentAutonomy"
+        required
+      />
       <label htmlFor="file">Imagem</label>
       <input
         type="file"
