@@ -1,0 +1,14 @@
+label {
+  margin: 1rem;
+}
+
+.power {
+  display: flex;
+  flex-direction: column;
+}
+
+.linha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
