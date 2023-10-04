@@ -5,3 +5,13 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.linha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pad-2 {
+  padding: 2rem;
+}
